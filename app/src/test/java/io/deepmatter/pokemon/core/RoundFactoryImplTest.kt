@@ -2,6 +2,7 @@ package io.deepmatter.pokemon.core
 
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
+import io.deepmatter.pokemon.api.CardApi
 import io.deepmatter.pokemon.model.Card
 import io.deepmatter.pokemon.model.Rarity
 import io.deepmatter.pokemon.util.random.Randomiser
@@ -21,9 +22,11 @@ class RoundFactoryImplTest {
     @Mock
     private lateinit var randomiser: Randomiser
 
+    @Mock private lateinit var api: CardApi
+
     @Before
     fun setup() {
-        factory = RoundFactoryImpl(
+        factory = RoundFactoryImpl(api,
             randomiser)
     }
     @Test
