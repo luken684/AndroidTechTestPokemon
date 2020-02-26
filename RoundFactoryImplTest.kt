@@ -69,7 +69,6 @@ class RoundFactoryImplTest {
 
         assertThat(factory.buildRound(cards)).isEqualTo(expected)
     }
-
     @Test
     fun `builds round with only 2 cards if multiple rarities are present`(){
 
@@ -82,19 +81,6 @@ class RoundFactoryImplTest {
 
         assertThat(factory.buildRound(cards).cards.size).isEqualTo(expected)
     }
-    @Test
-    fun `rare beats uncommon`() {
-        val cards = listOf(
-            uncommon("A"),
-            rare("B"))
-
-        val expected = rare("B")
-
-        whenever(randomiser.getIntInRange(any(), any()))
-            .thenReturn(0)
-
-        assertThat(factory.buildRound(cards).winner).isEqualTo(expected)
-    }
 
     private fun common(image: String) = Card(
         image = image,
@@ -103,7 +89,6 @@ class RoundFactoryImplTest {
     private fun uncommon(image: String) = Card(
         image = image,
         rarity = Rarity.Uncommon)
-
 
     private fun rare(image: String) = Card(
         image = image,

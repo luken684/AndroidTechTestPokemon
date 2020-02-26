@@ -1,5 +1,4 @@
 package io.deepmatter.pokemon.core
-
 import io.deepmatter.pokemon.api.adapter.COMMON
 import io.deepmatter.pokemon.model.Card
 import io.deepmatter.pokemon.model.Rarity
