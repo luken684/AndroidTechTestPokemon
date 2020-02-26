@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Pokemon</string>
+
+    <string name="loading_cards">Loading Cards.</string>
+
+    <string name="error_loading">An error occurred whilst loading cards.</string>
+    <string name="retry">Retry</string>
+
+    <string name="tap_rarer">Please tap the rarer card.</string>
+
+    <string name="congratulations">Congratulations, you\'ve won!</string>
+
+    <string name="correct">Correct</string>
+    <string name="wrong">Wrong</string>
+</resources>

@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion version_compile_sdk
+    buildToolsVersion version_build_tools
+
+    defaultConfig {
+        applicationId "io.deepmatter.pokemon"
+        minSdkVersion version_min_sdk
+        targetSdkVersion version_target_sdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$version_kotlin"
+
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
+    implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint"
+
+    implementation "androidx.lifecycle:lifecycle-runtime:$version_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle"
+    kapt "androidx.lifecycle:lifecycle-compiler:$version_lifecycle"
+
+    implementation "androidx.core:core-ktx:$version_ktx"
+
+    implementation "io.reactivex.rxjava2:rxkotlin:$version_rx"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$version_rx_bindings"
+
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$version_glide"
+    kapt "com.github.bumptech.glide:compiler:$version_glide"
+
+    implementation "com.google.code.gson:gson:$version_gson"
+
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$version_rx_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
+
+    implementation "com.facebook.stetho:stetho:$version_stetho"
+    implementation "com.facebook.stetho:stetho-okhttp3:$version_stetho"
+
+    implementation "com.google.dagger:dagger:$version_dagger"
+    kapt "com.google.dagger:dagger-compiler:$version_dagger"
+
+    testImplementation "junit:junit:$version_junit"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$version_mockito_kotlin"
+    testImplementation "org.assertj:assertj-core:$version_assertj"
+    testImplementation "androidx.arch.core:core-testing:$version_lifecycle"
+}
