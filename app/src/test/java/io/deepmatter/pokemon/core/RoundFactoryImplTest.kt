@@ -22,11 +22,10 @@ class RoundFactoryImplTest {
     @Mock
     private lateinit var randomiser: Randomiser
 
-    @Mock private lateinit var api: CardApi
 
     @Before
     fun setup() {
-        factory = RoundFactoryImpl(api,
+        factory = RoundFactoryImpl(
             randomiser)
     }
     @Test

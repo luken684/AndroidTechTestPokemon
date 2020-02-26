@@ -30,7 +30,7 @@ class GameModule {
             AndroidSchedulers.mainThread())
 
     @Provides
-    fun provideRoundFactory(randomiser: Randomiser): RoundFactory =
+    fun provideRoundFactory( randomiser: Randomiser): RoundFactory =
         RoundFactoryImpl(
             randomiser)
 }

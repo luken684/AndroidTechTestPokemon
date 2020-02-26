@@ -1,17 +1,15 @@
 package io.deepmatter.pokemon.core
 import io.deepmatter.pokemon.api.CardApi
-import io.deepmatter.pokemon.api.adapter.COMMON
 import io.deepmatter.pokemon.model.Card
 import io.deepmatter.pokemon.model.Rarity
 import io.deepmatter.pokemon.util.random.Randomiser
 import io.deepmatter.pokemon.viewmodel.Round
 
-class RoundFactoryImpl(private val api: CardApi, private val randomiser: Randomiser) : RoundFactory {
+class RoundFactoryImpl(private val randomiser: Randomiser) : RoundFactory {
 
     override fun buildRound(cards: List<Card>): Round {
-        val cards = api.getCards().blockingGet()
         val cardsUsed = cards.toMutableList().shuffled()
-        val cards1 = cards.distinctBy { it.rarity }.take(2)
+        val cards1 = cardsUsed.distinctBy { it.rarity }.take(2)
         val rareSecretCard = cards1.find { it.rarity == Rarity.RareSecret }
         val rareUltraCard = cards1.find { it.rarity == Rarity.RareUltra}
         val rareHoloCard = cards1.find { it.rarity == Rarity.RareHolo}
@@ -20,16 +18,16 @@ class RoundFactoryImpl(private val api: CardApi, private val randomiser: Randomi
         val commonCard = cards1.find { it.rarity == Rarity.Common }
 
         return if(rareSecretCard !=null){
-            Round(cards1, rareSecretCard!!)
+            Round(cards1, rareSecretCard)
         }
           else if(rareUltraCard !=null){
-            Round(cards1, winner = rareUltraCard!!)
+            Round(cards1, winner = rareUltraCard)
         } else if(rareHoloCard != null){
-            Round(cards1, rareHoloCard!!)
+            Round(cards1, rareHoloCard)
         } else if(rareCard != null){
-            Round(cards1, rareCard!!)
+            Round(cards1, rareCard)
         } else  if (uncommonCard !=null) {
-            Round(cards1, uncommonCard!!)
+            Round(cards1, uncommonCard)
         } else {
             Round(cards1, commonCard!!)
         }
