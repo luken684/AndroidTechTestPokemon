@@ -26,7 +26,6 @@ class RoundFactoryImplTest {
         factory = RoundFactoryImpl(
             randomiser)
     }
-
     @Test
     fun `generates a round with cards from two different rarities`() {
         val cards = listOf(
@@ -44,7 +43,6 @@ class RoundFactoryImplTest {
 
         assertThat(factory.buildRound(cards).cards).isEqualTo(expected)
     }
-
     @Test
     fun `uncommon wins over common`() {
         val cards = listOf(
@@ -58,7 +56,6 @@ class RoundFactoryImplTest {
 
         assertThat(factory.buildRound(cards).winner).isEqualTo(expected)
     }
-
     @Test
     fun `builds empty round if cards of only one rarity are supplied`() {
         val cards = listOf(
@@ -69,7 +66,6 @@ class RoundFactoryImplTest {
 
         assertThat(factory.buildRound(cards)).isEqualTo(expected)
     }
-
     @Test
     fun `builds round with only 2 cards if multiple rarities are present`(){
 
@@ -95,6 +91,20 @@ class RoundFactoryImplTest {
 
         assertThat(factory.buildRound(cards).winner).isEqualTo(expected)
     }
+    @Test
+    fun `rareSecret beats common`() {
+        val cards = listOf(
+            common("A"),
+            rareSecret("B"))
+
+        val expected = rareSecret("B")
+
+        whenever(randomiser.getIntInRange(any(), any()))
+            .thenReturn(0)
+
+        assertThat(factory.buildRound(cards).winner).isEqualTo(expected)
+
+    }
 
     private fun common(image: String) = Card(
         image = image,
@@ -104,8 +114,11 @@ class RoundFactoryImplTest {
         image = image,
         rarity = Rarity.Uncommon)
 
-
     private fun rare(image: String) = Card(
         image = image,
         rarity = Rarity.Rare)
+
+    private fun rareSecret(image: String) = Card(
+        image = image,
+        rarity = Rarity.RareSecret)
 }
